@@ -1,5 +1,4 @@
 from sense_hat import SenseHat, ACTION_HELD, ACTION_RELEASED
-import time
 from signal import pause
 
 print('ok')
