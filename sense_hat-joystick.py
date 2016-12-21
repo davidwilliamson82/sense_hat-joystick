@@ -15,11 +15,11 @@ for i in range(8):
     b += pattern[i]
     for j in range(8):        
         b += pattern[j]
-        ground.append((0, 0, b))
+        ground.append((0, 0, b)) # blue
  
 # box has rows of cells, and the cells are RGB tuples.
 # TODO: alpha channel support
-g = (0, 255, 0)
+g = (0, 255, 0) # green
 box = ((g, g), (g, g))
 x, y = (3, 3)
 
@@ -31,17 +31,14 @@ def pushed_up(event):
     global y
     if event.action != ACTION_RELEASED:
         y = clamp(y - 1)
-
 def pushed_down(event):
     global y
     if event.action != ACTION_RELEASED:
         y = clamp(y + 1)
-
 def pushed_left(event):
     global x
     if event.action != ACTION_RELEASED:
         x = clamp(x - 1)
-
 def pushed_right(event):
     global x
     if event.action != ACTION_RELEASED:
