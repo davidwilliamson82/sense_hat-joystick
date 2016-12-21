@@ -17,9 +17,9 @@ for i in range(8):
         b += pattern[j]
         ground.append((0, 0, b))
  
-# ball has rows of cells, and the cells are RGB tuples.
+# box has rows of cells, and the cells are RGB tuples.
 # TODO: alpha channel support
-ball = (((0, 255, 0), (0, 255, 0)), ((0, 255, 0), (0, 255, 0)))
+box = (((0, 255, 0), (0, 255, 0)), ((0, 255, 0), (0, 255, 0)))
 x, y = (3, 3)
 
 # I copied the joystick event handling from the sense_hat docs.
@@ -49,7 +49,7 @@ def pushed_right(event):
 def refresh():
     # here, the screen is updated, whenever the joystick is moved.
     picture = [i for i in ground] 
-    for i, row in enumerate(ball): # parse ball tuple.
+    for i, row in enumerate(box): # parse box tuple.
         for j, cell in enumerate(row):
             picture[x + j + (y + i)*8] = cell 
     joebob.set_pixels(picture)
