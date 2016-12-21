@@ -19,7 +19,8 @@ for i in range(8):
  
 # box has rows of cells, and the cells are RGB tuples.
 # TODO: alpha channel support
-box = (((0, 255, 0), (0, 255, 0)), ((0, 255, 0), (0, 255, 0)))
+g = (0, 255, 0)
+box = (g, g)*2
 x, y = (3, 3)
 
 # I copied the joystick event handling from the sense_hat docs.
