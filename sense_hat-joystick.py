@@ -18,7 +18,7 @@ for i in range(8):
         ground.append((0, 0, b))
  
 # figure has rows of cells, and the cells are RGB-alpha tuples.
-empty, yellow, green = (0, 0, 0, 0), (255, 255, 0, 1), (255, 0, 0, 0.3)
+empty, yellow, green = (0, 0, 0, 0), (255, 255, 0, 1), (0, 255, 0, 0.3)
 duck  = [(empty, empty, empty, yellow, (255, 127, 0, 1)),
        (yellow, yellow, yellow, yellow, empty),
        (empty, yellow, yellow, yellow, empty)]
