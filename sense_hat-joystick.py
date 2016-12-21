@@ -18,7 +18,7 @@ for i in range(8):
         ground.append((0, 0, b))
  
 # figure has rows of cells, and the cells are RGB-alpha tuples.
-empty, yellow, green = (0, 0, 0, 0), (255, 255, 0, 1), (0, 255, 0, 0.3)
+empty, yellow, green = (0, 0, 0, 0), (255, 255, 0, 1), (0, 255, 0, 0.4)
 duck  = [(empty, empty, empty, yellow, (255, 127, 0, 1)),
        (yellow, yellow, yellow, yellow, empty),
        (empty, yellow, yellow, yellow, empty)]
@@ -29,7 +29,7 @@ figure = duck
 x, y = (1,2)
 
 # I copied the joystick event handling from the sense_hat docs.
-# Support has been added for flipping the figure, horizontally
+# There are two 'clamp' functions, to accomodate differences between the width and height of the figure.
 def x_clamp(value, min_value=0, max_value=8 - len(figure[0])):
     return min(max_value, max(min_value, value))
 def y_clamp(value, min_value=0, max_value=8 - len(figure)):
@@ -43,6 +43,7 @@ def pushed_down(event):
     global y
     if event.action != ACTION_RELEASED:
         y = y_clamp(y + 1)
+# Support has been added for flipping the figure, horizontally
 def pushed_left(event):
     global x, direction,figure
     if direction == 'right':
@@ -69,21 +70,6 @@ def refresh():
             for k, channel in enumerate(pixel):
                 pixel[k] = int(round(cell[k]*cell[3])) + int(round( channel*(1 - cell[3])))
             picture[x + j + (y + i)*8] = tuple(pixel)
-    joebob.set_pixels(picture)
-
-joebob.stick.direction_up = pushed_up
-joebob.stick.direction_down = pushed_down
-joebob.stick.direction_left = pushed_left
-joebob.stick.direction_right = pushed_right
-joebob.stick.direction_any = refresh
-refresh()
-pause()
-
-    # here, the screen is updated, whenever the joystick is moved.
-    picture = [i for i in ground] 
-    for i, row in enumerate(box): # parse box tuple.
-        for j, cell in enumerate(row):
-            picture[x + j + (y + i)*8] = cell 
     joebob.set_pixels(picture)
 
 joebob.stick.direction_up = pushed_up
