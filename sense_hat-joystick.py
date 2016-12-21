@@ -24,25 +24,27 @@ box = ((g, g), (g, g))
 x, y = (3, 3)
 
 # I copied the joystick event handling from the sense_hat docs.
-def clamp(value, min_value=0, max_value=6):
+def x_clamp(value, min_value=0, max_value=8 - len(box[0])):
+    return min(max_value, max(min_value, value))
+def y_clamp(value, min_value=0, max_value=8 - len(box)):
     return min(max_value, max(min_value, value))
 
 def pushed_up(event):
     global y
     if event.action != ACTION_RELEASED:
-        y = clamp(y - 1)
+        y = y_clamp(y - 1)
 def pushed_down(event):
     global y
     if event.action != ACTION_RELEASED:
-        y = clamp(y + 1)
+        y = y_clamp(y + 1)
 def pushed_left(event):
     global x
     if event.action != ACTION_RELEASED:
-        x = clamp(x - 1)
+        x = x_clamp(x - 1)
 def pushed_right(event):
     global x
     if event.action != ACTION_RELEASED:
-        x = clamp(x + 1)
+        x = x_clamp(x + 1)
 
 def refresh():
     # here, the screen is updated, whenever the joystick is moved.
